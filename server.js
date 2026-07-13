@@ -20,6 +20,9 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "testdb",
+  ssl: process.env.DB_HOST?.includes("aivencloud.com")
+    ? { rejectUnauthorized: false }
+    : undefined,
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
@@ -471,4 +474,8 @@ async function startServer() {
   }
 }
 
-startServer();
+if (require.main === module) {
+  startServer();
+}
+
+module.exports = app;
