@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Event Admin Dashboard</title>
+    <link rel="stylesheet" href="./adminPanel.css">
+</head>
+<body>
+  <section id="loginScreen" class="login-wrapper">
+    <div class="login-card">
+      <div class="badge"><span></span> Secure admin access</div>
+      <h1 id="admin">Admin Dashboard</h1>
+      <p>Restricted For normal User ⚠️</p>
+      <div class="input-group">
+        <label for="username">Username</label>
+        <input id="username" type="text" placeholder="Enter Username" autocomplete="username" />
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Enter Passcode" autocomplete="current-password" />
+      </div>
+
+      <button class="primary-btn" id="loginBtn">Login</button>
+      <div id="loginError" class="error-text"></div>
+    </div>
+  </section>
+
+  <section id="dashboard" class="dashboard hidden">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">EA</div>
+        <div>
+          <h2>Event Admin</h2>
+          <p>CRUD control center</p>
+        </div>
+      </div>
+
+      <button class="nav-btn active">Dashboard <span>01</span></button>
+      <button class="nav-btn">Manage Events <span>02</span></button>
+      <button class="nav-btn">Attendee Count <span>03</span></button>
+      <button class="nav-btn">Validation <span>04</span></button>
+
+      <button id="logoutBtn" class="logout-btn">Logout</button>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h1>Admin Powers</h1>
+          <p>Create events, update details, delete outdated events, and track attendee counts.</p>
+        </div>
+        <div class="admin-pill">Logged in as admin</div>
+      </header>
+
+      <section class="stats">
+        <div class="stat-card">
+          <h3>Total Events</h3>
+          <p id="totalEvents">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Total Attendees</h3>
+          <p id="totalAttendees">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Categories</h3>
+          <p id="totalCategories">0</p>
+        </div>
+        <div class="stat-card">
+          <h3>Upcoming Events</h3>
+          <p id="upcomingEvents">0</p>
+        </div>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel">
+          <div class="panel-head">
+            <h2 id="formHeading">Create Event</h2>
+            <button class="mini-btn" id="resetFormBtn">Reset</button>
+          </div>
+
+          <input type="hidden" id="editId" />
+
+          <div class="input-group">
+            <label for="title">Event title *</label>
+            <input id="title" type="text" placeholder="Frontend Bootcamp" />
+          </div>
+
+          <div class="input-group">
+            <label for="description">Description *</label>
+            <textarea id="description" placeholder="Write event description"></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <label for="category">Category *</label>
+              <select id="category">
+                <option value="">Select category</option>
+                <option>Technology</option>
+                <option>Workshop</option>
+                <option>Music</option>
+                <option>Business</option>
+                <option>Design</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <label for="maxAttendees">Maximum attendees *</label>
+              <input id="maxAttendees" type="number" min="1" placeholder="200" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="input-group">
+              <label for="date">Date *</label>
+              <input id="date" type="date" />
+            </div>
+            <div class="input-group">
+              <label for="time">Time *</label>
+              <input id="time" type="time" />
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="venue">Venue *</label>
+            <input id="venue" type="text" placeholder="Community Hall" />
+          </div>
+
+          <div class="input-group">
+            <label for="image">Banner image URL</label>
+            <input id="image" type="url" placeholder="https://images.unsplash.com/..." />
+          </div>
+
+          <div class="form-actions">
+            <button id="saveEventBtn" class="save-btn">Save Event</button>
+            <button id="clearEventBtn" class="clear-btn">Clear</button>
+          </div>
+          <div id="formError" class="error-text"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h2>Event List / Table View</h2>
+            <button class="mini-btn" id="seedBtn">Load Demo Data</button>
+          </div>
+
+          <div class="filter-line">
+            <input id="searchInput" type="search" placeholder="Search by event title" />
+            <select id="categoryFilter">
+              <option value="All">All categories</option>
+            </select>
+            <input id="dateFilter" type="date" />
+          </div>
+
+          <div id="eventsList" class="events-list"></div>
+        </div>
+      </section>
+    </main>
+  </section>
+
+  <div id="toast" class="toast">Saved</div>
+<script src="./Adminscript.js"></script>
+</body>
+</html>
